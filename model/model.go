@@ -23,8 +23,9 @@ type DBHandler interface {
 }
 
 // init -> NewDBHandler
-func NewDBHandler(filepath string) DBHandler {
+func NewDBHandler(dbConn string) DBHandler {
 	// handler := newMemoryHandler() // map 인 경우
-	handler := newSqliteHandler(filepath) // sqlite 인 경우
+	// handler := newSqliteHandler(dbConn) // sqlite 인 경우
+	handler := newPQHandler(dbConn)
 	return handler
 }

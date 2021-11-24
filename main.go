@@ -12,7 +12,7 @@ import (
 func main() {
 	port := os.Getenv("PORT")
 
-	mux := myapp.MakeNewHandler("./todo.db")
+	mux := myapp.MakeNewHandler(os.Getenv("DATABASE_URL"))
 	defer mux.Close()
 
 	log.Println("Started App, portNo:", port)
