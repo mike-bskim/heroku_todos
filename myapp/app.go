@@ -103,7 +103,7 @@ func CheckSignin(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc)
 		next(rw, r)
 		return
 	}
-	// if not user sign in
+	// if user not sign in
 	// redirect signin.html
 	http.Redirect(rw, r, "/signin.html", http.StatusTemporaryRedirect)
 }

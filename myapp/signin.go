@@ -69,9 +69,9 @@ func googleAuthCallback(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// store ID info into SEssion cookie
+	// store ID info into Session cookie
 	var userInfo GoogleUserId
-	err = json.Unmarshal(data, &userInfo)
+	err = json.Unmarshal(data, &userInfo) // 구글 리턴값에서 사용자 정보 파싱.
 	if err != nil {
 		log.Println(err.Error())
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -85,7 +85,7 @@ func googleAuthCallback(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	// Set some session values.
+	// Set some session values. 쿠키 저장.
 	session.Values["id"] = userInfo.ID
 	// Save it before we write to the response/return from the handler.
 	err = session.Save(r, w)
